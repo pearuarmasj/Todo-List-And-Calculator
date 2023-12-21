@@ -83,7 +83,7 @@ int Todo() {
 }
 
 int Calculator() {
-    int num1, num2;
+    float num1, num2;
     char operation;
     float result = 0.0f; // Initialize 'result' with a default value
 
@@ -125,7 +125,7 @@ int Calculator() {
                         exit(0);
                     default:
                         std::cout << "Invalid input" << std::endl;
-                        int Calculator();
+                        Calculator();
                 }
             } else {
                 std::cout << "The result is not an integer: " << result << std::endl;
@@ -141,7 +141,7 @@ int Calculator() {
                         exit(0);
                     default:
                         std::cout << "Invalid input" << std::endl;
-                        int Calculator();
+                        Calculator();
                 }
             }
         } else {
@@ -158,7 +158,7 @@ int Calculator() {
                     exit(0);
                 default:
                     std::cout << "Invalid input" << std::endl;
-                    int Calculator();
+                    Calculator();
             }
         }
     }
