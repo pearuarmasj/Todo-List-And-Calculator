@@ -52,11 +52,22 @@ bool handleTodoList() {
         }
     }
 }
+bool isNumber(const std::string& s)
+{
+    std::string::const_iterator it = s.begin();
+    while (it != s.end() && std::isdigit(*it)) ++it;
+    return !s.empty() && it == s.end();
+}
+
 
 bool handleCalculator() {
     std::string num1, num2; //strings to store numbers
     std::cout << "Enter first number: ";
     std::getline(std::cin, num1); //read first number from user
+    if (!isNumber(num1)) {
+        std::cout << "Invalid input" << std::endl; //print error message
+        return true;
+    }
     std::cout << "Enter second number: ";
     std::getline(std::cin, num2); //read second number from user
 
