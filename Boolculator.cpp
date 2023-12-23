@@ -61,33 +61,39 @@ bool isNumber(const std::string& s)
 
 
 bool handleCalculator() {
-    std::string num1, num2; //strings to store numbers
+    std::string num1, num2; // strings to store numbers
     std::cout << "Enter first number: ";
-    std::getline(std::cin, num1); //read first number from user
-    if (!isNumber(num1)) {
-        std::cout << "Invalid input" << std::endl; //print error message
+    std::getline(std::cin, num1); // read first number from user
+    std::cout << "Enter second number: ";
+    std::getline(std::cin, num2); // read second number from user
+
+    float num1_float, num2_float;
+    try {
+        num1_float = std::stof(num1); // convert first number to float
+        num2_float = std::stof(num2); // convert second number to float
+    } catch (const std::invalid_argument& e) {
+        std::cout << "Invalid input" << std::endl; // print error message
         return true;
     }
-    std::cout << "Enter second number: ";
-    std::getline(std::cin, num2); //read second number from user
-
-    float num1_float = std::stof(num1); //convert first number to float
-    float num2_float = std::stof(num2); //convert second number to float
 
     std::cout << "Enter operator (+, -, *, /): ";
-    std::string op; //string to store operator
-    std::getline(std::cin, op); //read operator from user
+    std::string op; // string to store operator
+    std::getline(std::cin, op); // read operator from user
 
-    if (op == "+") { //if user entered '+'
-        std::cout << num1_float << " + " << num2_float << " = " << num1_float + num2_float << std::endl; //print sum
-    } else if (op == "-") { //if user entered '-'
-        std::cout << num1_float << " - " << num2_float << " = " << num1_float - num2_float << std::endl; //print difference
-    } else if (op == "*") { //if user entered '*'
-        std::cout << num1_float << " * " << num2_float << " = " << num1_float * num2_float << std::endl; //print product
-    } else if (op == "/") { //if user entered '/'
-        std::cout << num1_float << " / " << num2_float << " = " << num1_float / num2_float << std::endl; //print quotient
-    } else { //if user entered invalid input
-        std::cout << "Invalid input" << std::endl; //print error message
+    if (op == "+") { // if user entered '+'
+        std::cout << num1_float << " + " << num2_float << " = " << num1_float + num2_float << std::endl; // print sum
+    } else if (op == "-") { // if user entered '-'
+        std::cout << num1_float << " - " << num2_float << " = " << num1_float - num2_float << std::endl; // print difference
+    } else if (op == "*") { // if user entered '*'
+        std::cout << num1_float << " * " << num2_float << " = " << num1_float * num2_float << std::endl; // print product
+    } else if (op == "/") { // if user entered '/'
+        if (num2_float != 0) {
+            std::cout << num1_float << " / " << num2_float << " = " << num1_float / num2_float << std::endl; // print quotient
+        } else {
+            std::cout << "Division by zero is not allowed" << std::endl; // print error message
+        }
+    } else { // if user entered invalid input
+        std::cout << "Invalid input" << std::endl; // print error message
     }
     return true;
 }
