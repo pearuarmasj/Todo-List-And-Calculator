@@ -27,6 +27,12 @@ bool handleTodoList() {
             std::cout << "Enter task to add to the list: ";
             std::getline(std::cin, task); //read task from user
             tasks.push_back(task); //add task to vector
+
+            std::ofstream file("todo.txt"); //open file for writing
+            for (int i = 0; i < tasks.size(); i++) { //loop through tasks
+                file << tasks[i] << std::endl; //write task to file
+            }
+            file.close(); //close file
         } else if (task == "d") { //if user entered 'd'
             if (tasks.empty()) { //if there are no tasks
                 std::cout << "There are no tasks to delete" << std::endl; //print error message
@@ -36,16 +42,17 @@ bool handleTodoList() {
                 int task_number = std::stoi(task); //convert task number to int
                 if (task_number > 0 && task_number <= tasks.size()) { //if task number is valid
                     tasks.erase(tasks.begin() + task_number - 1); //delete task
+
+                    std::ofstream file("todo.txt"); //open file for writing
+                    for (int i = 0; i < tasks.size(); i++) { //loop through tasks
+                        file << tasks[i] << std::endl; //write task to file
+                    }
+                    file.close(); //close file
                 } else { //if task number is invalid
                     std::cout << "Invalid task number" << std::endl; //print error message
                 }
             }
         } else if (task == "q") { //if user entered 'q'
-            std::ofstream file("todo.txt"); //open file for writing
-            for (int i = 0; i < tasks.size(); i++) { //loop through tasks
-                file << tasks[i] << std::endl; //write task to file
-            }
-            file.close(); //close file
             return true;
         } else { //if user entered invalid input
             std::cout << "Invalid input" << std::endl; //print error message
